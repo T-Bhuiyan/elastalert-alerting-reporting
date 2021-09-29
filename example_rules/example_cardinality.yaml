@@ -1,0 +1,64 @@
+# Alert when the rate of events exceeds a threshold
+
+# (Optional)
+# Elasticsearch host
+# es_host: elasticsearch.example.com
+
+# (Optional)
+# Elasticsearch port
+# es_port: 14900
+
+# (Required)
+# Index to search, wildcard supported
+index: development-*
+
+# (OptionaL) Connect with SSL to Elasticsearch
+#use_ssl: True
+
+# (Optional) basic-auth username and password for Elasticsearch
+#es_username: someusername
+#es_password: somepassword
+
+# (Required)
+# Rule name, must be unique
+name: Example cardinality rule
+
+# (Required)
+# Type of alert.
+# the frequency rule type alerts when num_events events occur with timeframe time
+type: cardinality
+
+# (Required, cardinality specific)
+# Count the number of unique values for this field
+cardinality_field: "streamingSessionID"
+
+# (Required, frequency specific)
+# Alert when there less than 15 unique hostnames
+min_cardinality: 1
+
+# (Required, frequency specific)
+# The cardinality is defined as the number of unique values for the most recent 4 hours
+timeframe:
+  hours: 1
+
+# (Required)
+# A list of Elasticsearch filters used for find events
+# These filters are joined with AND and nested in a filtered query
+# For more info: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl.html
+filter:
+- term:
+        metricType: "Misc"
+
+# (Required)
+# The alert is use when a match is found
+#alert:
+#- "email"
+
+# (required, email specific)
+# a list of email addresses to send alerts to
+#email:
+#- "elastalert@example.com"
+alert: "ms_teams"
+ms_teams:
+ms_teams_webhook_url: "https://fraunhofer.webhook.office.com/webhookb2/fe5f49c6-639a-4a8b-bc69-72b2230cfb4b@f930300c-c97d-4019-be03-add650a171c4/IncomingWebhook/3eb99d084aa4413e8122148635233e39/7104849f-d48c-41e6-aaff-017d83e830dd"
+ms_teams_alert_summary: "test"

@@ -1,0 +1,50 @@
+name: Streaming session ID affected by Error
+type: metric_aggregation
+
+#es_host: 127.0.0.1
+#es_port: 9200
+
+index: development-*
+
+buffer_time:
+  hours: 6
+
+metric_agg_key: streamingSessionID
+metric_agg_type: cardinality
+#query_key: beat.hostname
+doc_type: _doc
+  
+#bucket_interval:
+#  minutes: 5
+  
+#sync_bucket_interval: true
+#allow_buffer_time_overlap: true
+#use_run_every_query_size: true
+
+#min_threshold: 0.1
+max_threshold: 0.1
+
+filter:
+- term:
+        metricType: "ErrorList"
+
+#filter: 
+#  - query: 
+#       query_string: 
+#           query: "data.message: MEDIA"
+
+#aggregation:
+#       schedule: '* 4 * * *'
+alert: "ms_teams" 
+ms_teams:
+ms_teams_webhook_url: "https://fraunhofer.webhook.office.com/webhookb2/fe5f49c6-639a-4a8b-bc69-72b2230cfb4b@f930300c-c97d-4019-be03-add650a171c4/IncomingWebhook/3eb99d084aa4413e8122148635233e39/7104849f-d48c-41e6-aaff-017d83e830dd"
+ms_teams_alert_summary: "test"
+ms_teams_theme_color: "#ff0000"
+ms_teams_alert_fixed_width: "True"
+
+alert_text: |
+        Period: {1}
+        Error affected streamingSessionID Count: {0}
+
+alert_text_type: alert_text_only
+alert_text_args: ["metric_streamingSessionID_cardinality", "@timestamp"]
