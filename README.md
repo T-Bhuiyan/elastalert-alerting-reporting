@@ -1,5 +1,5 @@
 
-# sand-playground-for-elasticsearch-elastalert
+# playground-for-elasticsearch-elastalert
 
 ElastAlert is an alerting framework originally designed by Yelp. It is able to detect anomalies, spikes, or other patterns of interest. It is production-ready and is a well-known standard of alerting in the Elasticsearch ecosystem. It is designed to be reliable, highly modular, and easy to set up and configure.
 
