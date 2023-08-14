@@ -90,7 +90,7 @@ alert_time_limit:
 ```yaml
 example_streamingSessionID_agg.yaml
 
-name: SAND_Reporting
+name: Reporting
 type: metric_aggregation
 
 #es_host: 127.0.0.1
